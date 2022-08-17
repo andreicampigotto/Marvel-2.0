@@ -3,11 +3,14 @@ package com.example.marvel.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel.R
 import com.example.marvel.databinding.ItemHeroBinding
 import com.example.marvel.model.Hero
+import com.example.marvel.view.HeroesFragmentDirections
 
 class HeroesAdapter(val onTap: (Hero) -> Unit) :
     ListAdapter<Hero, HeroesViewHolder>(HeroesDiffCallback()) {
@@ -24,9 +27,7 @@ class HeroesAdapter(val onTap: (Hero) -> Unit) :
         getItem(position).let { hero ->
             holder.bind(hero)
             holder.itemView.setOnClickListener {
-                onTap(
-                    hero
-                )
+                it.findNavController().navigate(HeroesFragmentDirections.actionHeroesFragmentToHeroDetailFragment(hero))
             }
         }
     }

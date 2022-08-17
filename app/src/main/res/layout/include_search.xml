@@ -9,11 +9,13 @@
         android:id="@+id/tvFeaturedCharacters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
         android:text="FEATURED CHARACTERS"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvFeaturedCharacters"
         tools:listitem="@layout/item_above"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/tvCharactersList"
@@ -37,36 +39,27 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="2dp"
+        android:gravity="center"
         android:text="MARVEL CHARACTERS LIST"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopHeroes" />
-
-    <ImageView
-        android:id="@+id/imSearch"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="15dp"
-        android:src="@drawable/ic_baseline_search_24"
-        app:layout_constraintBottom_toBottomOf="@+id/etSearch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etSearch" />
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewTopHeroes" />
 
     <EditText
         android:id="@+id/etSearch"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="15dp"
+        android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawableTint="@color/black"
+        android:gravity="center"
         android:inputType="text"
-        android:paddingStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imSearch"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCharactersList"
-        tools:ignore="TouchTargetSizeCheck"
         tools:text="Search characters" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,17 +26,19 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
 
     private lateinit var viewModel: HeroesViewModel
     private lateinit var binding: HeroesFragmentBinding
-    private val heroesAdapter = HeroesAdapter {
-        (requireActivity() as MainActivity).replaceFrag(HeroDetailFragment(it))
+    private val heroesAdapter = HeroesAdapter {}
+
+    private val aboveAdapter = AboveAdapter {}
+
+    private val observerHero = Observer<List<Hero>> {
+        heroesAdapter.update(it.toMutableList())
+        binding.progressBar.visibility = View.GONE
+        binding.heroesRecyclerView.visibility = View.VISIBLE
     }
 
-    private val aboveAdapter = AboveAdapter {
-        (requireActivity() as MainActivity).replaceFrag(HeroDetailFragment(it))
+    private val observerClearHero = Observer<List<Hero>> {
+        heroesAdapter.clearList(it.toMutableList())
     }
-
-    private val observerHero = Observer<List<Hero>> { heroesAdapter.update(it.toMutableList()) }
-    private val observerClearHero =
-        Observer<List<Hero>> { heroesAdapter.clearList(it.toMutableList()) }
 
     private val observerAbove = Observer<List<Hero>> { aboveAdapter.update(it.subList(0, 5)) }
     private val observerOffset = Observer<Int> {

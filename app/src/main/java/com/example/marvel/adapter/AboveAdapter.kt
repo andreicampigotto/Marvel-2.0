@@ -3,10 +3,12 @@ package com.example.marvel.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel.R
 import com.example.marvel.databinding.ItemAboveBinding
 import com.example.marvel.model.Hero
+import com.example.marvel.view.HeroesFragmentDirections
 
 class AboveAdapter(val onTap: (Hero) -> Unit) : RecyclerView.Adapter<AboveHeroesViewHolder>() {
 
@@ -23,9 +25,8 @@ class AboveAdapter(val onTap: (Hero) -> Unit) : RecyclerView.Adapter<AboveHeroes
         heroes[position].apply {
             holder.bind(this)
             holder.itemView.setOnClickListener {
-                onTap(
-                    this
-                )
+                it.findNavController()
+                    .navigate(HeroesFragmentDirections.actionHeroesFragmentToHeroDetailFragment(this))
             }
         }
     }
@@ -37,7 +38,6 @@ class AboveAdapter(val onTap: (Hero) -> Unit) : RecyclerView.Adapter<AboveHeroes
         heroes.addAll(newlist)
         notifyDataSetChanged()
     }
-
 }
 
 class AboveHeroesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

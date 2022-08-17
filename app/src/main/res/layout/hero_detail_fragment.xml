@@ -6,33 +6,26 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <com.example.lib.Toolbar
-        android:id="@+id/toolbarDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
     <com.example.lib.ContentDetail
         android:id="@+id/contentCardDetail"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDetail" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:justificationMode="inter_word"
+        android:padding="4dp"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentCardDetail"
+        app:layout_constraintTop_toBottomOf="@id/contentCardDetail"
         tools:text="Hero Description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

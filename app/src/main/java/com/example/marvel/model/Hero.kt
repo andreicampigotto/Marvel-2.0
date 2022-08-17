@@ -5,6 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class HeroData(
     @SerializedName("data")
@@ -32,8 +33,7 @@ data class Hero(
 
     @SerializedName("description")
     val description: String?
-
-)
+) : Serializable
 
 data class Thumbnail(
     @SerializedName("path")
