@@ -13,8 +13,8 @@ Marvel list super-heroes
 - [Room Database](https://developer.android.com/training/data-storage/room) - Store data with Room Database
 - [Hilt](https://dagger.dev/hilt) - Dependency injection
 - [Material Design](https://material.io/develop/android/) - Material Components for Android
-- [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
-- [Glide](https://github.com/bumptech/glide)
+- [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) - Coroutines
+- [Glide](https://github.com/bumptech/glide) - Glide
 
 ## License 
 - [MIT](https://github.com/andreicampigotto/Marvel-2.0/blob/master/License)
