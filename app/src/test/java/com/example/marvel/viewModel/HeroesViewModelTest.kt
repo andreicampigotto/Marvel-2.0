@@ -16,7 +16,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
 class HeroesViewModelTest{

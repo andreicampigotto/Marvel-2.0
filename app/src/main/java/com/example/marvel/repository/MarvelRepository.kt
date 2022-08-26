@@ -78,5 +78,4 @@ class MarvelRepository @Inject constructor(
         }
         return getFilteredFromDatabase(query = name)
     }
-
 }

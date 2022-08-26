@@ -26,7 +26,7 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
 
     private lateinit var viewModel: HeroesViewModel
     private lateinit var binding: HeroesFragmentBinding
-    private val heroesAdapter = HeroesAdapter {}
+    private val heroesAdapter = HeroesAdapter()
 
     private val aboveAdapter = AboveAdapter {}
 

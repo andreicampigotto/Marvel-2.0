@@ -12,7 +12,7 @@ import com.example.marvel.databinding.ItemHeroBinding
 import com.example.marvel.model.Hero
 import com.example.marvel.view.HeroesFragmentDirections
 
-class HeroesAdapter(val onTap: (Hero) -> Unit) :
+class HeroesAdapter() :
     ListAdapter<Hero, HeroesViewHolder>(HeroesDiffCallback()) {
 
     private val heroes = mutableListOf<Hero>()
