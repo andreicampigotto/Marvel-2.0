@@ -15,6 +15,14 @@ Marvel list super-heroes         https://developer.marvel.com/docs#!/public/getC
 - [Material Design](https://material.io/develop/android/) - Material Components for Android
 - [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) - Coroutines
 - [Glide](https://github.com/bumptech/glide) - Glide
+- [Mockito](https://site.mockito.org) - Unit tests
+
+##
+
+### Authors
+- Name: Andrei Campigotto
+- E-mail: andreicampigotto@icloud.com
+- [Linkedin](https://www.linkedin.com/in/andrei-campigotto/)
 
 ## License 
 - [MIT](https://github.com/andreicampigotto/Marvel-2.0/blob/master/License)
