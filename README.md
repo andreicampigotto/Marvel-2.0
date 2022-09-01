@@ -1,5 +1,11 @@
 # Marvel-2.0 
 Marvel list super-heroes         https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0
+##
+
+<h4 align="center"> 
+	🚧 🚨  Atention - the application uses internet 🚨 🚧 
+</h4>
+
 
 <p> 
 <img width="353" alt="Screen Shot 2022-05-15 at 11 02 59 PM" src="https://user-images.githubusercontent.com/38699529/168507724-d99e6b00-5276-4050-9b14-edc7fccb12cd.png">
