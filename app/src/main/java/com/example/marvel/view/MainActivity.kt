@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
-            topLevelDestinationIds = setOf(),
-            fallbackOnNavigateUpListener = ::onSupportNavigateUp
-        )
+            navController.graph)
         binding.topAppBar.setupWithNavController(navController, appBarConfiguration)
     }
 }
