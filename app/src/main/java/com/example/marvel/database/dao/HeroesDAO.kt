@@ -9,13 +9,13 @@ import com.example.marvel.model.Hero
 @Dao
 interface HeroesDAO {
 
-    @Query("SELECT * FROM Hero")
+    @Query("SELECT * FROM HEROES")
     suspend fun get(): List<Hero>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(list: List<Hero>)
 
-    @Query("SELECT * FROM Hero WHERE name LIKE '%' || :query || '%'")
+    @Query("SELECT * FROM HEROES WHERE name LIKE '%' || :query || '%'")
     suspend fun getFiltered(query: String): List<Hero>?
 
 }

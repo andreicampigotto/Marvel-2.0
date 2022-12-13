@@ -16,10 +16,9 @@ data class HeroResponse(
     val results: List<Hero>
 )
 
-@Entity
+@Entity(tableName = "HEROES")
 data class Hero(
-
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @SerializedName("id")
     val id: Long,

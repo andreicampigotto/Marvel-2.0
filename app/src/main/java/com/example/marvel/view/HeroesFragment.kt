@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,8 +18,10 @@ import com.example.marvel.adapter.AboveAdapter
 import com.example.marvel.adapter.HeroesAdapter
 import com.example.marvel.databinding.HeroesFragmentBinding
 import com.example.marvel.model.Hero
+import com.example.marvel.utils.Resource
 import com.example.marvel.utils.checkConnection
 import com.example.marvel.viewModel.HeroesViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,6 +64,28 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
         setupRecyclerViewTop()
         setupRecyclerView()
         searchHero()
+
+        subscribeToPostsObserver()
+    }
+
+    private fun subscribeToPostsObserver(){
+        viewModel.heroes.observe(viewLifecycleOwner, Observer { result ->
+            when (result){
+                is Resource.Loading<*> ->{
+                    binding.progressBar.isVisible = true
+                }
+                is Resource.Success<*> -> {
+                    binding.progressBar.isVisible = false
+                    val posts  = result.data
+                    heroesAdapter.submitList(posts as MutableList<Hero>?)
+                    binding.heroesRecyclerView.adapter = heroesAdapter
+                }
+                is Resource.Error<*> -> {
+                    binding.progressBar.isVisible = false
+                    Snackbar.make(binding.root, result.message.toString(), Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
     private fun setupRecyclerView() = with(binding.heroesRecyclerView) {

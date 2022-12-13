@@ -9,7 +9,7 @@ import com.example.marvel.model.Hero
 
 @Database(
     entities = [Hero::class],
-    version = 1
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
