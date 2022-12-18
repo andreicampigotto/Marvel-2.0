@@ -1,9 +1,7 @@
 package com.example.marvel.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.google.firebase.database.annotations.NotNull
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -17,29 +15,32 @@ data class HeroResponse(
 )
 
 @Entity(tableName = "HEROES")
-data class Hero(
+data class Hero (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
+    @NotNull
     @SerializedName("id")
     val id: Long,
 
+    @NotNull
     @SerializedName("name")
     val name: String,
 
-    @Embedded
-    @SerializedName("thumbnail")
-    val thumbnail: Thumbnail,
+//    @Embedded
+//    @NotNull
+//    @SerializedName("thumbnail")
+//    val thumbnail: Thumbnail,
 
     @SerializedName("description")
     val description: String?
 ) : Serializable
 
-data class Thumbnail(
+data class Thumbnail (
     @SerializedName("path")
     val path: String,
     @SerializedName("extension")
     val extension: String,
-) {
+){
     fun concatThumbnail(): String {
         return "$path.$extension"
     }

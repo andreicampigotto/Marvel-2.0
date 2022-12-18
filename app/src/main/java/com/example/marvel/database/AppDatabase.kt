@@ -2,6 +2,7 @@ package com.example.marvel.database
 
 import android.content.Context
 import androidx.room.Database
+import androidx.room.Ignore
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.marvel.database.dao.HeroesDAO
@@ -9,7 +10,7 @@ import com.example.marvel.model.Hero
 
 @Database(
     entities = [Hero::class],
-    version = 3
+    version = 4
 )
 abstract class AppDatabase : RoomDatabase() {
 

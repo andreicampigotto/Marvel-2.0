@@ -1,21 +1,21 @@
 package com.example.marvel.repository
 
-import com.google.firebase.database.*
 import com.example.marvel.BuildConfig.PRIVATE_KEY
 import com.example.marvel.BuildConfig.PUBLIC_KEY
 import com.example.marvel.database.dao.HeroesDAO
+import com.example.marvel.enums.KeysDataHeroes
 import com.example.marvel.model.Hero
+import com.example.marvel.model.Thumbnail
 import com.example.marvel.service.MarvelAPI
-import com.example.marvel.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import com.example.marvel.utils.md5
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import retrofit2.Response
+//import retrofit2.Response
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import retrofit2.Response
+import java.util.*
 
 class MarvelRepository @Inject constructor(
     private val service: MarvelAPI,
@@ -23,12 +23,45 @@ class MarvelRepository @Inject constructor(
     private val db: FirebaseFirestore,
 ) {
 
-    private var database: DatabaseReference = Firebase.database.reference
+    //salva no firebase
+    suspend fun addHeroes(heroes: Hero): Boolean {
+        val map = mutableMapOf<String, Any>()
+        map[KeysDataHeroes.ID_HERO.key] = heroes.id
+        map[KeysDataHeroes.NAME.key] = heroes.name
+//        map[KeysDataHeroes.THUMBNAIL.key] = heroes.thumbnail
+        heroes.description?.let { map.put(KeysDataHeroes.DESCRIPTION.key, it) }
 
+        val taks = db.collection("HEROES").add(map)
+        taks.await()
+        return true
+    }
+
+    //pega do room
     private suspend fun getAllFromDatabase(): List<Hero>? {
         return dao.get()
     }
 
+    //get do firebase
+    private suspend fun getAllFromFirebase(): List<Hero>? {
+        val task =
+            db.collection("HEROES").get()
+        val result = task.await()
+        val heroesList = mutableListOf<Hero>()
+        result?.forEach {
+            heroesList.add(
+                Hero(
+                    it.data[KeysDataHeroes.ID_HERO.key] as Long,
+                    it.data["key_name"] as String,
+//                    it.data["key_thumbnail"] as String,
+                    it.data["key_description"] as String,
+                )
+            )
+        }
+        return heroesList
+    }
+
+
+    //salvar no room
     private suspend fun insertIntoDatabase(listOf: List<Hero>): Boolean {
         return withContext(Dispatchers.Default){
             dao.insert(listOf)
@@ -40,6 +73,7 @@ class MarvelRepository @Inject constructor(
         return dao.getFiltered(query)
     }
 
+    //pega resultado da api
     suspend fun fetchHeroes(offset: Int, checkInternet: Boolean): List<Hero>? {
         val ts = (System.currentTimeMillis() / 1000).toString()
         if (checkInternet) {
@@ -56,11 +90,30 @@ class MarvelRepository @Inject constructor(
                 val processResponse = processData(response)
                 processResponse?.data?.results
             }
+
+            // salva local Room
             resultAPI?.let {
                 insertIntoDatabase(it)
             }
 
+            //salva no firebase
+            resultAPI?.forEach {
+                addHeroes(it)
+            }
+
             return resultAPI
+        }
+
+        return getAllFromDatabase()
+    }
+
+    //logica para checkar internet e ultilizar banco local ou cloud
+    suspend fun fetchHeroesDb(checkInternet: Boolean): List<Hero>? {
+        if (checkInternet) {
+            getAllFromDatabase()?.forEach {
+                addHeroes(it)
+            }
+            return getAllFromFirebase()
         }
         return getAllFromDatabase()
     }
@@ -68,6 +121,7 @@ class MarvelRepository @Inject constructor(
     private fun <T> processData(response: Response<T>): T? {
         return if (response.isSuccessful) response.body() else null
     }
+
 
     suspend fun fetchHeroesByName(offset: Int, name: String, checkInternet: Boolean): List<Hero>? {
         val ts = (System.currentTimeMillis() / 1000).toString()
@@ -88,29 +142,5 @@ class MarvelRepository @Inject constructor(
 
         }
         return getFilteredFromDatabase(query = name)
-    }
-
-    init {
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-
-                //HEROES = ArrayList()
-                if (p0.exists()) {
-                    for (i in p0.children) {
-                        val itm = i.getValue(Hero::class.java)
-                        //HEROES.add(itm!!)
-                    }
-                    Resource.Success("Data fetched successfully")
-                }
-                else{
-                    Resource.Error("Unknown error occurred", null)
-                    // binding.progressBar.isVisible = true
-                    //binding.button2.isVisible = true
-                }
-            }
-        })
     }
 }

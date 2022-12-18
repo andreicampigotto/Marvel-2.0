@@ -24,7 +24,8 @@ class HeroDetailFragment() : Fragment(R.layout.hero_detail_fragment) {
     }
 
     private fun bind(hero: Hero) {
-        binding.contentCardDetail.bind(hero.name, hero.thumbnail.concatThumbnail())
+//        binding.contentCardDetail.bind(hero.name, hero.thumbnail.concatThumbnail())
+//        binding.contentCardDetail.bind(hero.name, hero.thumbnail)
         binding.tvDescription.text = hero.description
     }
 

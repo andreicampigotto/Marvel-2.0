@@ -22,29 +22,39 @@ class HeroesViewModel @Inject constructor(private val repository: MarvelReposito
     private val _heroesSearch = MutableLiveData<List<Hero>>()
     val heroesSearch: LiveData<List<Hero>> = _heroesSearch
 
-    fun fetchHeroes(offset: Int, checkInternet: Boolean) {
+//    fun fetchHeroes(offset: Int, checkInternet: Boolean) {
+//        viewModelScope.launch {
+//            val returnedHeroes =
+//                repository.fetchHeroes(offset = offset, checkInternet = checkInternet)
+//            returnedHeroes?.let {
+//                _heroes.value = it
+//            }
+//        }
+//    }
+
+        fun fetchHeroesDb(checkInternet: Boolean) {
         viewModelScope.launch {
             val returnedHeroes =
-                repository.fetchHeroes(offset = offset, checkInternet = checkInternet)
+                repository.fetchHeroesDb(checkInternet = checkInternet)
             returnedHeroes?.let {
                 _heroes.value = it
             }
         }
     }
 
-    fun fetchHeroesByName(offset: Int, name: String, checkInternet: Boolean) {
-        viewModelScope.launch {
-            val returnedHeroes =
-                repository.fetchHeroesByName(
-                    offset = offset,
-                    name = name,
-                    checkInternet = checkInternet
-                )
-            returnedHeroes?.let {
-                _heroesSearch.value = it
-            }
-        }
-    }
+//    fun fetchHeroesByName(offset: Int, name: String, checkInternet: Boolean) {
+//        viewModelScope.launch {
+//            val returnedHeroes =
+//                repository.fetchHeroesByName(
+//                    offset = offset,
+//                    name = name,
+//                    checkInternet = checkInternet
+//                )
+//            returnedHeroes?.let {
+//                _heroesSearch.value = it
+//            }
+//        }
+//    }
 
     fun nextPage() {
         _offset.value = (_offset.value ?: 0) + 20

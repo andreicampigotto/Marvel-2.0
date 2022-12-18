@@ -15,7 +15,7 @@ class ContentItem @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    fun bind(name: String, thumbnail: String) {
+    fun bind(name: String, thumbnail: Int) {
         binding.tvHeroName.text = name
         Glide.with(context)
             .load(thumbnail)

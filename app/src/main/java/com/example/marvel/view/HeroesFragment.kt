@@ -45,9 +45,9 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
 
     private val observerAbove = Observer<List<Hero>> { aboveAdapter.update(it.subList(0, 5)) }
     private val observerOffset = Observer<Int> {
-        viewModel.fetchHeroes(offset = it, (requireActivity() as MainActivity).checkConnection())
+        viewModel.fetchHeroesDb((requireActivity() as MainActivity).checkConnection())
+//        viewModel.fetchHeroes(offset = it, (requireActivity() as MainActivity).checkConnection())
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -111,7 +111,8 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
                 hideSoftInput()
             }
         })
-        viewModel.fetchHeroes(0, (requireActivity() as MainActivity).checkConnection())
+//        viewModel.fetchHeroes(0, (requireActivity() as MainActivity).checkConnection())
+        viewModel.fetchHeroesDb((requireActivity() as MainActivity).checkConnection())
     }
 
     fun View.hideSoftInput() {
@@ -127,16 +128,19 @@ class HeroesFragment : Fragment(R.layout.heroes_fragment) {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 p0.let {
                     if (it?.length!! >= 2) {
-                        viewModel.fetchHeroesByName(
-                            0,
-                            it.toString(),
-                            (requireActivity() as MainActivity).checkConnection()
-                        )
+//                        viewModel.fetchHeroesByName(
+//                            0,
+//                            it.toString(),
+//                            (requireActivity() as MainActivity).checkConnection()
+//                        )
                     } else
-                        viewModel.fetchHeroes(
-                            0,
-                            (requireActivity() as MainActivity).checkConnection()
-                        )
+//                        viewModel.fetchHeroes(
+//                            0,
+//                            (requireActivity() as MainActivity).checkConnection()
+//                        )
+                    viewModel.fetchHeroesDb(
+                        (requireActivity() as MainActivity).checkConnection()
+                    )
                 }
             }
 

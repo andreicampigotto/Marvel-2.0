@@ -5,6 +5,7 @@ import com.example.marvel.database.AppDatabase
 import com.example.marvel.database.dao.HeroesDAO
 import com.example.marvel.repository.MarvelRepository
 import com.example.marvel.service.MarvelAPI
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +35,9 @@ object HiltModule {
     }
 
     @Provides
-    fun provideHeroRepository(service: MarvelAPI, dao: HeroesDAO): MarvelRepository =
-        MarvelRepository(service, dao)
+    fun provideHeroRepository(service: MarvelAPI, dao: HeroesDAO, db: FirebaseFirestore): MarvelRepository =
+        MarvelRepository(service, dao, db)
+
+    @Provides
+    fun getDatabase(): FirebaseFirestore = FirebaseFirestore.getInstance()
 }

@@ -49,6 +49,8 @@ class HeroesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val binding: ItemHeroBinding = ItemHeroBinding.bind(itemView)
 
     fun bind(hero: Hero) {
-        binding.contentItem.bind(hero.name, hero.thumbnail.concatThumbnail())
+//        binding.contentItem.bind(hero.name, hero.thumbnail.concatThumbnail())
+//        binding.contentItem.bind(hero.name, hero.thumbnail)
+        binding.contentItem.bind(hero.name, R.drawable.ic_baseline_search_24)
     }
 }
