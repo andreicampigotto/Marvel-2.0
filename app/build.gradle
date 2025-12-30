@@ -8,18 +8,21 @@ plugins {
 }
 
 android {
-    compileSdk 32
-
+    namespace "com.example.marvel"
+    compileSdk 36
     defaultConfig {
-        applicationId "com.example.marvel"
-        minSdk 21
-        targetSdk 32
+//        applicationId "com.example.marvel"
+        minSdk 23
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "PUBLIC_KEY", "\"ebbbc4e1571486501254dc75a03f30a7\"")
         buildConfigField("String", "PRIVATE_KEY", "\"aedd64cce6ec6859c062845b6c055bbb239400cd\"")
+    }
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -42,66 +45,66 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.10.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0'
 
 //Suporte para celulares antigos
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 //RecyclerView
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.recyclerview:recyclerview:1.4.0"
 
 //Lottie
-    implementation "com.airbnb.android:lottie:4.2.2"
+    implementation "com.airbnb.android:lottie:6.7.1"
 
 // LIFECYCLE
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.10.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0'
 
 // NAVIGATION
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.9.6'
 
 // RETROFIT
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:3.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:3.0.0'
 
 // GLIDE
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:5.0.5'
 
 // HILT
-    implementation 'com.google.dagger:hilt-android:2.42'
-    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
-    kapt 'com.google.dagger:hilt-compiler:2.42'
+    implementation 'com.google.dagger:hilt-android:2.57.2'
+    implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.4'
+    kapt 'com.google.dagger:hilt-compiler:2.57.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(path: ':lib')
-    kapt 'com.google.dagger:hilt-compiler:2.42'
+    kapt 'com.google.dagger:hilt-compiler:2.57.2'
 
 // ROOM
-    implementation("androidx.room:room-runtime:2.4.3")
-    implementation("androidx.room:room-ktx:2.4.3")
-    kapt "androidx.room:room-compiler:2.4.3"
+    implementation("androidx.room:room-runtime:2.8.4")
+    implementation("androidx.room:room-ktx:2.8.4")
+    kapt "androidx.room:room-compiler:2.8.4"
 
 // TESTING - ANDROID TEST
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 
 // TESTING - UNIT
     testImplementation 'junit:junit:4.+'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'com.google.truth:truth:1.1.3'
-    testImplementation 'org.mockito:mockito-core:4.0.0'
-    testImplementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation('org.mockito:mockito-inline:4.0.0')
+    testImplementation 'com.google.truth:truth:1.4.5'
+    testImplementation 'org.mockito:mockito-core:5.21.0'
+    testImplementation 'com.squareup.retrofit2:retrofit-mock:3.0.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2'
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    testImplementation('org.mockito:mockito-inline:5.2.0')
 }
 kapt {
     correctErrorTypes true
